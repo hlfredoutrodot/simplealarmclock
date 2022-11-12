@@ -1,14 +1,13 @@
-# Foobar
+![PCB](/pub.png)
 
-Foobar is a Python library for dealing with word pluralization.
+# S.imple S.mart C.lock
 
-## Installation
+A simple code project around the question:
+How to make the simplest clock as possible?!
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+## How this work
 
-```bash
-pip install foobar
-```
+This experimental project work with the internal arduino clock. Stop use 
 
 ## Usage
 
