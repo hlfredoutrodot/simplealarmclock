@@ -15,7 +15,7 @@ The Arduino's problem is the lot of leds tha consume too much around the microco
 
 # Warning & Project status
 
-I develop this project on my free time, this git is public but th project is still in progress. So warning the PCB was not tested.
+I develop this project on my free time, this git is public but the project is still in progress. So warning the PCB was not tested.
 
 ## Parts list
 
