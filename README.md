@@ -15,9 +15,9 @@ The Arduino's problem is the lot of leds tha consume too much around the microco
 
 ## Parts list
 
-'''python
+```python
 test
-'''
+```
 
 ## License
 
