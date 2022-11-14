@@ -20,7 +20,7 @@ I develop this project on my free time, this git is public but the project is st
 ## Parts list
 
 ```python
-- 3 throught button
+- 3 Trought keys 
 ```
 
 ## License
