@@ -19,7 +19,7 @@ I develop this project on my free time, this git is public but the project is st
 
 ## Parts list
 
-```python
+```
 - 3 Pushbuttons 6 x 6 x 4.3 mm (at https://www.conrad.com/p/te-connectivity-1825910-2-pushbutton-24-v-dc-005-a-1-x-offon-momentary-l-x-w-x-h-6-x-6-x-43-mm-1-pcs-701749 for example)
 - 1 lcd 16x02 (at https://www.conrad.com/p/display-elektronik-lcd-w-x-h-x-d-80-x-36-x-66-mm-2238769 for example)
 - 1 DHT11 (at https://www.conrad.com/p/joy-it-sen-ky015tf-sensor-kit-1-pcs-1695379 for example)
