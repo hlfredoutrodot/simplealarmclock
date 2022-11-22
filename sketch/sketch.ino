@@ -1,3 +1,11 @@
+//   ____ ___ __  __ ____  _     _____      _                       ____ _     ___   ____ _  __
+//  / ___|_ _|  \/  |  _ \| |   | ____|__ _| | __ _ _ __ _ __ ___  / ___| |   / _ \ / ___| |/ /
+//  \___ \| || |\/| | |_) | |   |  _| / _` | |/ _` | '__| '_ ` _ \| |   | |  | | | | |   | ' / 
+//   ___) | || |  | |  __/| |___| |__| (_| | | (_| | |  | | | | | | |___| |__| |_| | |___| . \ 
+//  |____/___|_|  |_|_|   |_____|_____\__,_|_|\__,_|_|  |_| |_| |_|\____|_____\___/ \____|_|\_\
+                                                                                            
+                                                                                            
+
 #include <EEPROM.h>
 #include <LiquidCrystal.h>
 const int rs = 8, en = 9, d4 = 4, d5 = 5, d6 = 6, d7 = 7;
@@ -7,8 +15,8 @@ int day = 7;
 int hour = 23;
 int minute = 58;
 int week = 2;
-
-
+int minutespeed =  60000;
+bool debugmode = false;
 String lang = "fr";
 
 String day1 = "day1";
@@ -19,19 +27,41 @@ String day5 = "day5";
 String day6 = "day6";
 String day7 = "day7";
 String trweek = "defweek";
+String startscrl1 = "blank line 1";
+String startscrl2 = "blank line 2";
 
 
 int config = 1;
 
 void setup() {
-  // put your setup code here, to run once:
+
+  if (debugmode == true) {
+  day = 1;
+  hour = 1;
+  minute = 1;
+  week = 1;
+  minutespeed = 10;
+  startscrl1 = "debugmode don't";
+  startscrl2 = "use as it is";
+  }
+
   Serial.begin(9600);
   lcd.begin(16, 2);
-  lcd.print("  # UNLOCKED #  ");
+  lcd.print(startscrl1);
   lcd.setCursor(0, 1);
-  lcd.print("--> FIRST START  ");
-  delay(2000);
+  lcd.print(startscrl2);
+  delay(10000);
   lcd.clear();
+  if (debugmode == true) {     
+  Serial.println("debugmode");
+  day = 1;
+  hour = 1;
+  minute = 1;
+  week = 1;
+  minutespeed = 10;
+  String startscrl1 = "debugmode don't";
+  String startscrl2 = "use as an alarmclock";
+  }
 
   //while(config < 10){}
 
@@ -44,6 +74,9 @@ void setup() {
     day6 = "Samedi";
     day7 = "Dimanche";
     trweek = "semaine: ";
+    if (debugmode == true) {
+      Serial.println("lang = fr");
+    }
   }
 
   if (lang == "en") {
@@ -55,11 +88,14 @@ void setup() {
     day6 = "Saturday";
     day7 = "Sunday";
     trweek = "  week : ";
+    if (debugmode == true) {
+      Serial.println("lang = en");
+    }
   }
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+
   minute = minute + 1;
   if (minute == 60) {
     hour = hour + 1;
@@ -88,7 +124,7 @@ lcd.print(":");
 if (hour < 10) {
   lcd.setCursor(9, 0);
   lcd.print("0");
-  lcd.setCursor(10, 0);
+  lcd.setCursor(10, 0);  // put your main code here, to run repeatedly:
   lcd.print(hour);
 } else {
   lcd.setCursor(9, 0);
@@ -131,5 +167,5 @@ lcd.setCursor(0, 1);
 lcd.print(trweek);
 lcd.print(week);
 
-delay(60000);
+delay(minutespeed);
 }
