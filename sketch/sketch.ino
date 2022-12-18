@@ -15,7 +15,7 @@ int day = 7;
 int hour = 23;
 int minute = 58;
 int week = 2;
-int minutespeed = 600;
+int minutespeed = 6000;
 bool debugmode = false;
 String lang = "fr";
 
@@ -210,7 +210,7 @@ void loop() {
   hourshow();
 
   milliscount = 0;
-  while (milliscount = minutespeed) {
+  while (milliscount != minutespeed) {
     milliscount++;
     Serial.println(pressbutton());
     delay(10);
