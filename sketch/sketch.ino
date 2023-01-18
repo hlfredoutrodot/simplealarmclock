@@ -12,10 +12,13 @@ const int rs = 8, en = 9, d4 = 4, d5 = 5, d6 = 6, d7 = 7;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
 int day = 7;
-int hour = 23;
-int minute = 58;
+int hour = 18;
+int minute = 34;
 int week = 2;
+int alarmhour = 25;
+int alarmmn = 35;
 int minutespeed = 6000;
+bool isring = false;
 bool debugmode = false;
 String lang = "fr";
 
@@ -28,14 +31,32 @@ String day5 = "day5";
 String day6 = "day6";
 String day7 = "day7";
 String trweek = "defweek";
+String tralarm = "tralarm";
+String tralarm1 = "tralarm1";
+String tralarm2 = "tralarm2";
+String trsettings = "trsettings";
 String startscrl1 = "SIMPLEalarmCLOCK";
 String startscrl2 = "   @Stbretzel   ";
+
+int menu = 0;
+unsigned long waitime;
+unsigned long waitminute;
+unsigned long waitloop;
+bool ison = false;
+unsigned long ontime = 60000;
+unsigned long minutime = 60000;
+unsigned long looptime = 100;
+unsigned long millisprocess;
+int buzzerpin = 2;
+
+
 
 enum {
   release_buttons,
   menu_button,
   up_button,
-  down_button
+  down_button,
+  select_button
 };
 
 void setup() {
@@ -51,6 +72,7 @@ void setup() {
   }
 
   pinMode(A4, OUTPUT);
+  pinMode(buzzerpin, OUTPUT);
   pinMode(A1, INPUT);
   pinMode(A2, INPUT);
   pinMode(A3, INPUT);
@@ -62,6 +84,7 @@ void setup() {
   lcd.print(startscrl2);
   delay(10000);
   lcd.clear();
+  analogWrite(10, 0);
   if (debugmode == true) {
     Serial.println("debugmode");
     day = 1;
@@ -72,7 +95,6 @@ void setup() {
     String startscrl1 = "debugmode don't";
     String startscrl2 = "use as an alarmclock";
   }
-
   if (lang == "fr") {
     day1 = "Lundi";
     day2 = "Mardi";
@@ -82,38 +104,29 @@ void setup() {
     day6 = "Samedi";
     day7 = "Dimanche";
     trweek = "semaine: ";
-    if (debugmode == true) {
-      Serial.println("lang = fr");
-      lcd.clear();
-      lcd.setCursor(11, 0);
-      lcd.print(":");
-      if (hour < 10) {
-        lcd.setCursor(9, 0);
-        lcd.print(week);
-
-        lcd.print("0");
-
-        lcd.setCursor(10, 0);
-        lcd.print(hour);
-        lcd.print(trweek);
-        lcd.print(week);
-      }
-    }
-
-    if (lang == "en") {
-      day1 = "Monday";
-      day2 = "Tuesday";
-      day3 = "Wednesday";
-      day4 = "Thursday";
-      day5 = "Friday";
-      day6 = "Saturday";
-      day7 = "Sunday";
-      trweek = "  week : ";
-      if (debugmode == true) {
-        Serial.println("lang = en");
-      }
-    }
+    tralarm = "alarmes";
+    trsettings = "parametres";
+    tralarm1 = "alarme 1";
+    tralarm2 = "alarme 2";
   }
+
+  if (lang == "en") {
+    day1 = "Monday";
+    day2 = "Tuesday";
+    day3 = "Wednesday";
+    day4 = "Thursday";
+    day5 = "Friday";
+    day6 = "Saturday";
+    day7 = "Sunday";
+    trweek = "  week : ";
+    tralarm = "alarms";
+    trsettings = "settings";
+    tralarm1 = "alarm 1";
+    tralarm2 = "alarm 2";
+  }
+  millisprocess = millis();
+  waitminute = millisprocess;
+  waitloop = millisprocess;
 }
 
 byte pressbutton() {
@@ -125,7 +138,9 @@ byte pressbutton() {
     return up_button;
   else if (val < 450)
     return down_button;
-  else
+  else if (val < 850) {
+    return select_button;
+  } else
     return release_buttons;
 }
 
@@ -204,15 +219,93 @@ void hourshow() {
   lcd.print(trweek);
   lcd.print(week);
 }
+void inloop() {
+  if (pressbutton() >= 1) {
+    if (isring == true) {
+      isring = false;
+      digitalWrite(buzzerpin, LOW);
+    }
+    if (menu == 0) {
+      analogWrite(10, 225);
+      ison = true;
+      menu = 1;
+      millisprocess = millis();
+      waitime = millisprocess;
+    }
+  }
+  if (menu == 1) {
+    if (ison) {
+      millisprocess = millis();
+      hourshow();
+      if (millisprocess - waitime >= ontime) {
+        menu = 0;
+        ison = false;
+        analogWrite(10, 0);
+        lcd.clear();
+      }
+    }
+
+    if (pressbutton() == 1) {
+      menu = 2;
+    }
+  }
+
+  if (menu == 2) {
+    if (pressbutton() == 4) {
+      menu = 1;
+    }
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("+ ");
+    lcd.print(tralarm);
+    lcd.setCursor(0, 1);
+    lcd.print("- ");
+    lcd.print(trsettings);
+    if (pressbutton() == 2) {
+      menu = 3;
+    }
+  }
+  if (menu == 3) {
+    if (pressbutton() == 4) {
+      menu = 1;
+    }
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("+ ");
+    lcd.print(tralarm1);
+    lcd.setCursor(0, 1);
+    lcd.print("- ");
+    lcd.print(tralarm2);
+  }
+}
+
+void ring() {
+  isring = true;
+  digitalWrite(buzzerpin, HIGH);
+  Serial.println("ring");
+}
+
+void alm() {
+  if (alarmhour == hour) {
+    if (alarmmn == minute) {
+      ring();
+    }
+  }
+}
 
 void loop() {
-  hourpass();
-  hourshow();
+  millisprocess = millis();
+  if (millisprocess - waitminute >= minutime) {
+    millisprocess = millis();
+    waitminute = millisprocess;
+    hourpass();
+    alm();
+  }
 
-  milliscount = 0;
-  while (milliscount != minutespeed) {
-    milliscount++;
-    Serial.println(pressbutton());
-    delay(10);
+  if (millisprocess - waitloop >= looptime) {
+    millisprocess = millis();
+    waitloop = millisprocess;
+
+    inloop();
   }
 }
