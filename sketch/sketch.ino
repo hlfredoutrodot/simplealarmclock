@@ -15,7 +15,7 @@ int day = 7;
 int hour = 18;
 int minute = 34;
 int week = 2;
-int alarmhour = 25;
+int alarmhour = 24;
 int alarmmn = 35;
 int minutespeed = 6000;
 bool isring = false;
@@ -37,6 +37,7 @@ String tralarm2 = "tralarm2";
 String trsettings = "trsettings";
 String startscrl1 = "SIMPLEalarmCLOCK";
 String startscrl2 = "   @Stbretzel   ";
+String trpress = "trpress";
 
 int menu = 0;
 unsigned long waitime;
@@ -48,6 +49,9 @@ unsigned long minutime = 60000;
 unsigned long looptime = 100;
 unsigned long millisprocess;
 int buzzerpin = 2;
+int almledpin = 5;
+bool canpass = true;
+int wantedmenu = 0;
 
 
 
@@ -73,6 +77,7 @@ void setup() {
 
   pinMode(A4, OUTPUT);
   pinMode(buzzerpin, OUTPUT);
+  pinMode(almledpin, OUTPUT);
   pinMode(A1, INPUT);
   pinMode(A2, INPUT);
   pinMode(A3, INPUT);
@@ -108,6 +113,7 @@ void setup() {
     trsettings = "parametres";
     tralarm1 = "alarme 1";
     tralarm2 = "alarme 2";
+    trpress = "pressez 'menu'";
   }
 
   if (lang == "en") {
@@ -123,6 +129,7 @@ void setup() {
     trsettings = "settings";
     tralarm1 = "alarm 1";
     tralarm2 = "alarm 2";
+    trpress = "press 'menu'";
   }
   millisprocess = millis();
   waitminute = millisprocess;
@@ -241,6 +248,7 @@ void inloop() {
         menu = 0;
         ison = false;
         analogWrite(10, 0);
+        digitalWrite(almledpin, LOW);
         lcd.clear();
       }
     }
@@ -262,7 +270,8 @@ void inloop() {
     lcd.print("- ");
     lcd.print(trsettings);
     if (pressbutton() == 2) {
-      menu = 3;
+      canpass = false;
+      wantedmenu = 3;
     }
   }
   if (menu == 3) {
@@ -293,6 +302,25 @@ void alm() {
   }
 }
 
+void wantedchoose() {
+  if (wantedmenu >= 1) {
+    waitscreen();
+  }
+}
+
+void waitscreen() {
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(trpress);
+  if (canpass == false) {
+    if (pressbutton() == 1) {
+      canpass = true;
+      menu = wantedmenu;
+      wantedmenu = 0;
+    }
+  }
+}
+
 void loop() {
   millisprocess = millis();
   if (millisprocess - waitminute >= minutime) {
@@ -307,5 +335,6 @@ void loop() {
     waitloop = millisprocess;
 
     inloop();
+    wantedchoose();
   }
 }
