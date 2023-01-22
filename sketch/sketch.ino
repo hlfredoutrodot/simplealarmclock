@@ -17,6 +17,10 @@ int minute = 34;
 int week = 2;
 int alarmhour = 24;
 int alarmmn = 35;
+int salarmhour = 24;
+int salarmmn = 35;
+bool alarmon = false;
+bool salarmon = false;
 int minutespeed = 6000;
 bool isring = false;
 bool debugmode = false;
@@ -38,7 +42,10 @@ String trsettings = "trsettings";
 String startscrl1 = "SIMPLEalarmCLOCK";
 String startscrl2 = "   @Stbretzel   ";
 String trpress = "trpress";
-
+String trtoggleactive = "trtoggleactive";
+String trchange = "trchange";
+String tractive = "tractive";
+String trdisactive = "trdisactive";
 int menu = 0;
 unsigned long waitime;
 unsigned long waitminute;
@@ -90,16 +97,6 @@ void setup() {
   delay(10000);
   lcd.clear();
   analogWrite(10, 0);
-  if (debugmode == true) {
-    Serial.println("debugmode");
-    day = 1;
-    hour = 1;
-    minute = 1;
-    week = 1;
-    minutespeed = 10;
-    String startscrl1 = "debugmode don't";
-    String startscrl2 = "use as an alarmclock";
-  }
   if (lang == "fr") {
     day1 = "Lundi";
     day2 = "Mardi";
@@ -114,6 +111,10 @@ void setup() {
     tralarm1 = "alarme 1";
     tralarm2 = "alarme 2";
     trpress = "pressez 'menu'";
+    trtoggleactive = "(des)activer";
+    trchange = "configurer";
+    tractive = "activer";
+    trdisactive = "desactiver";
   }
 
   if (lang == "en") {
@@ -130,6 +131,10 @@ void setup() {
     tralarm1 = "alarm 1";
     tralarm2 = "alarm 2";
     trpress = "press 'menu'";
+    trtoggleactive = "(dis)active";
+    trchange = "configure";
+    tractive = "active";
+    trdisactive = "disactive";
   }
   millisprocess = millis();
   waitminute = millisprocess;
@@ -278,6 +283,15 @@ void inloop() {
     if (pressbutton() == 4) {
       menu = 1;
     }
+
+    if (pressbutton() == 2) {
+      canpass = false;
+      wantedmenu = 4;
+    }
+    if (pressbutton() == 3) {
+      canpass = false;
+      wantedmenu = 5;
+    }
     lcd.clear();
     lcd.setCursor(0, 0);
     lcd.print("+ ");
@@ -286,18 +300,63 @@ void inloop() {
     lcd.print("- ");
     lcd.print(tralarm2);
   }
+
+  if (menu == 4) {
+    if (pressbutton() == 4) {
+      menu = 1;
+    }
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("+ ");
+    lcd.print(trtoggleactive);
+    lcd.setCursor(0, 1);
+    lcd.print("- ");
+    lcd.print(trchange);
+    if (pressbutton() == 2) {
+      canpass = false;
+      wantedmenu = 6;
+    }
+  }
+  if (menu == 6) {
+    if (pressbutton() == 4) {
+      menu = 1;
+    }
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("+ ");
+    lcd.print(tractive);
+    lcd.setCursor(0, 1);
+    lcd.print("- ");
+    lcd.print(trdisactive);
+    if (pressbutton() == 2) {
+      alarmon = false;
+      Serial.println(alarmon);
+    }
+    if (pressbutton() == 3) {
+      alarmon = true;
+      Serial.println(alarmon);
+    }
+  }
 }
 
 void ring() {
   isring = true;
   digitalWrite(buzzerpin, HIGH);
-  Serial.println("ring");
 }
 
 void alm() {
   if (alarmhour == hour) {
     if (alarmmn == minute) {
-      ring();
+      if (alarmon = true) {
+        ring();
+      }
+    }
+  }
+  if (salarmhour == hour) {
+    if (salarmmn == minute) {
+      if (salarmon = true) {
+        ring();
+      }
     }
   }
 }
