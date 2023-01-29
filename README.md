@@ -29,13 +29,11 @@ I develop this project on my free time, this git is public but the project is st
 - 1 DHT11 sensor (https://www.gotronic.fr/art-capteur-de-t-et-d-humidite-dht11-20692.htm)
 - 4 resistors (Look in cad files for references)
 - 1 potentiometer (https://www.gotronic.fr/art-potentiometre-lineaire-1k-8486-11105.htm)
-
 ```
 ### Parts if you want to create the pcb
 
 ```
 - 1 copper plate 100x160 1.5mm (https://www.gotronic.fr/art-epoxy-brut-2-faces-6714.htm)
-
 ```
 
 ## License
