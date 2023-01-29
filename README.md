@@ -1,6 +1,6 @@
 ![PCB](/pub.png)
 
-# S.imple S.mart C.lock
+# S.imple A.larm C.lock
 
 A simple code project around the question:
 How to make the simplest clock as possible?!
@@ -20,11 +20,21 @@ I develop this project on my free time, this git is public but the project is st
 ## Parts list
 
 ```
-- 3 Pushbuttons 6 x 6 x 4.3 mm (at https://www.conrad.com/p/te-connectivity-1825910-2-pushbutton-24-v-dc-005-a-1-x-offon-momentary-l-x-w-x-h-6-x-6-x-43-mm-1-pcs-701749 for example)
-- 1 lcd 16x02 (at https://www.conrad.com/p/display-elektronik-lcd-w-x-h-x-d-80-x-36-x-66-mm-2238769 for example)
-- 1 DHT11 (at https://www.conrad.com/p/joy-it-sen-ky015tf-sensor-kit-1-pcs-1695379 for example)
-- 3 JST Female 2 Pin (at https://www.conrad.com/p/jst-pin-strip-standard-eh-total-number-of-pins-2-b2b-eh-a-lfsn-1-pcs-1217319 for example)
+- 2 simple pushbuttons (https://www.gotronic.fr/art-bouton-poussoir-sp86a15-4301.htm)
+- 2 leds pushbuttons (https://www.gotronic.fr/art-bouton-poussoir-sp86a251-4303.htm)
+- 4 Male JST connectors (https://www.gotronic.fr/art-cordon-jst-male-femelle-2-cts-jst2-21318.htm)
+- 1 Atmega328 (https://www.gotronic.fr/art-circuit-atmega328-12423.htm)
+- 1 16, 0000 MHz quartz oscillator (https://www.gotronic.fr/art-quartz-bas-profil-16-0000-mhz-17101.htm)
+- 1 lcd 16x02 (https://www.gotronic.fr/art-afficheur-lcd16x2-31490.htm)
+- 1 DHT11 sensor (https://www.gotronic.fr/art-capteur-de-t-et-d-humidite-dht11-20692.htm)
+- 4 resistors (Look in cad files for references)
+- 1 potentiometer (https://www.gotronic.fr/art-potentiometre-lineaire-1k-8486-11105.htm)
 
+```
+### Parts if you want to create the pcb
+
+```
+- 1 copper plate 100x160 1.5mm (https://www.gotronic.fr/art-epoxy-brut-2-faces-6714.htm)
 
 ```
 
