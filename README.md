@@ -5,7 +5,7 @@
 A simple code project around the question:
 How to make the simplest clock as possible?!
 
-## (stbretzel.github.io/simplealarmclock/) 
+## [Website](stbretzel.github.io/simplealarmclock/) 
 
 ## How this work
 
