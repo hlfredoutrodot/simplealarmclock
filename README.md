@@ -5,6 +5,8 @@
 A simple code project around the question:
 How to make the simplest clock as possible?!
 
+## [Presentation](https://stbretzel.github.io/simplealarmclock/) 
+
 ## How this work
 
 This experimental project work with the internal arduino clock. Stop use rtc clock, there is a clock in arduino!
