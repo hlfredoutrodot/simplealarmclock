@@ -2,15 +2,6 @@
 
 # Horloge simple basée sur arduino
 
-## Comment ça marche ?
-
-Le code se fait via l'interface de programmation arduino ainsi qu'avec le bootloader arduino installé sur l'atmega 328.
-Au lieu d'utiliser une horloge RTC externe, ce projet utilise l'horloge interne de l'arduino.
-
-## Pourquoi utiliser l'horloge interne ?
-
-L'aduino dispose déjà d'une horloge, alors pourquoi utiliser une horloge externe ? Cela consomme plus d'énergie et coûte plus cher.
-
 ## Liste des composants
 
 ```
@@ -33,7 +24,3 @@ L'aduino dispose déjà d'une horloge, alors pourquoi utiliser une horloge exter
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-
-# Avertissement et status du projet
-
-Si vous tombez sur ce projet, sachez qu'il n'est pas développé pour être reproduit par tout le monde. Ainsi ce n'est pas sur qu'il marche comme indiqué dans les fichiers et est développé sur mon temps libre à titre de hobby.
