@@ -1,43 +1,39 @@
 ![PCB](/pub.png)
 
-# S.imple A.larm C.lock
+# Horloge simple basée sur arduino
 
-A simple code project around the question:
-How to make the simplest clock as possible?!
+## Comment ça marche ?
 
-## [Presentation](https://stbretzel.github.io/simplealarmclock/) 
+Le code se fait via l'interface de programmation arduino ainsi qu'avec le bootloader arduino installé sur l'atmega 328.
+Au lieu d'utiliser une horloge RTC externe, ce projet utilise l'horloge interne de l'arduino.
 
-## How this work
+## Pourquoi utiliser l'horloge interne ?
 
-This experimental project work with the internal arduino clock. Stop use rtc clock, there is a clock in arduino!
+L'aduino dispose déjà d'une horloge, alors pourquoi utiliser une horloge externe ? Cela consomme plus d'énergie et coûte plus cher.
 
-## Explanations
-
-The Arduino's problem is the lot of leds tha consume too much around the microcontroller, so i created a pcb to exploit the Atmega328 without inutile component. The pcb is designed specialy for a specific alarm-clock, but, you can modify it as your wish! This is the magic of open-source.
-
-## Parts list
+## Liste des composants
 
 ```
-- 2 simple pushbuttons (https://www.gotronic.fr/art-bouton-poussoir-sp86a15-4301.htm)
-- 2 leds pushbuttons (https://www.gotronic.fr/art-bouton-poussoir-sp86a251-4303.htm)
-- 4 Male JST connectors (https://www.gotronic.fr/art-cordon-jst-male-femelle-2-cts-jst2-21318.htm)
+- 2 boutons poussoirs (https://www.gotronic.fr/art-bouton-poussoir-sp86a15-4301.htm)
+- 2 boutons poussoirs équipés d'une led (https://www.gotronic.fr/art-bouton-poussoir-sp86a251-4303.htm)
+- 4 connecteurs JST mâles (https://www.gotronic.fr/art-cordon-jst-male-femelle-2-cts-jst2-21318.htm)
 - 1 Atmega328 (https://www.gotronic.fr/art-circuit-atmega328-12423.htm)
-- 1 16, 0000 MHz quartz oscillator (https://www.gotronic.fr/art-quartz-bas-profil-16-0000-mhz-17101.htm)
+- 1 16,0000 MHz oscillateur quartz (https://www.gotronic.fr/art-quartz-bas-profil-16-0000-mhz-17101.htm)
 - 1 lcd 16x02 (https://www.gotronic.fr/art-afficheur-lcd16x2-31490.htm)
-- 1 DHT11 sensor (https://www.gotronic.fr/art-capteur-de-t-et-d-humidite-dht11-20692.htm)
-- 4 resistors (Look in cad files for references)
-- 1 potentiometer (https://www.gotronic.fr/art-potentiometre-lineaire-1k-8486-11105.htm)
+- 1 capteur DHT11 (https://www.gotronic.fr/art-capteur-de-t-et-d-humidite-dht11-20692.htm)
+- 4 resistances (Regarder dans le CAD pour les références)
+- 1 potentiomètre (https://www.gotronic.fr/art-potentiometre-lineaire-1k-8486-11105.htm)
 ```
-### Parts if you want to create the pcb
+### Composants pour construire le PCB
 
 ```
-- 1 copper plate 100x160 1.5mm (https://www.gotronic.fr/art-epoxy-brut-2-faces-6714.htm)
+- 1 plaque de cuivre 100x160 1.5mm (https://www.gotronic.fr/art-epoxy-brut-2-faces-6714.htm)
 ```
 
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
-# Warning & Project status
+# Avertissement et status du projet
 
-I develop this project on my free time, this git is public but the project is still in progress. So warning the PCB was not tested. The circuit is not really good explained.
+Si vous tombez sur ce projet, sachez qu'il n'est pas développé pour être reproduit par tout le monde. Ainsi ce n'est pas sur qu'il marche comme indiqué dans les fichiers et est développé sur mon temps libre à titre de hobby.
