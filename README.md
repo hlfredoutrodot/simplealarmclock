@@ -5,15 +5,15 @@
   Ceci est un projet de réveil basé sur arduino.
   
  ### Pourquoi c'est innovant ?
-     Ce projet n'utilise pas d'horloge externe mais seulement l'horloge interne de l'aduino pour ne pas avoir besoin d'horloge 
-    externe.
+  Ce projet n'utilise pas d'horloge externe mais seulement l'horloge interne de l'aduino pour ne pas avoir besoin d'horloge externe.
+  
 
 ## Status
-    Projet arrêté definitivement car il n'est pas viable économiquement et techniquement.
+  Projet arrêté definitivement car il n'est pas viable économiquement et techniquement.
     
-    En effet, après quelques expériences et recherches plus poussées, l'horloge interne de l'arduino n'est pas assez précise et se décale de quelques minutes par semaines.
+  En effet, après quelques expériences et recherches plus poussées, l'horloge interne de l'arduino n'est pas assez précise et se décale de quelques minutes par semaines.
 
-    Cependant, ce projet contient plus de 500 lignes de codes, aura pris plusieurs mois de développement. J'ai développé des menus contextuels interactifs à l'aide de boutons. Ainsi que quelques graphismes sur lrécran lcd.
+  Cependant, ce projet contient plus de 500 lignes de codes, aura pris plusieurs mois de développement. J'ai développé des menus contextuels interactifs à l'aide de boutons. Ainsi que quelques graphismes sur lrécran lcd.
     
 ## Liste des composants
 
