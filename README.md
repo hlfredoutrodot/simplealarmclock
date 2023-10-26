@@ -8,7 +8,7 @@
   Ce projet n'utilise pas d'horloge externe mais seulement l'horloge interne de l'aduino pour ne pas avoir besoin d'horloge externe.
   
 
-## Status
+## Status : Prototype
   Projet arrêté definitivement car il n'est pas viable économiquement et techniquement.
     
   En effet, après quelques expériences et recherches plus poussées, l'horloge interne de l'arduino n'est pas assez précise et se décale de quelques minutes par semaines.
