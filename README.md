@@ -13,7 +13,7 @@
     
   En effet, après quelques expériences et recherches plus poussées, l'horloge interne de l'arduino n'est pas assez précise et se décale de quelques minutes par semaines.
 
-  Cependant, ce projet contient plus de 500 lignes de codes, aura pris plusieurs mois de développement. J'ai développé des menus contextuels interactifs à l'aide de boutons. Ainsi que quelques graphismes sur lrécran lcd.
+  Cependant, ce projet contient plus de 500 lignes de codes, aura pris plusieurs mois de développement. Il contient des menus contextuels interactifs à l'aide de boutons ainsi que quelques graphismes sur l'écran lcd.
     
 ## Liste des composants
 
@@ -33,6 +33,9 @@
 ```
 - 1 plaque de cuivre 100x160 1.5mm (https://www.gotronic.fr/art-epoxy-brut-2-faces-6714.htm)
 ```
+
+## Crédits
+Programmation, modélisation, développement et prototypage: Hélie Frédout Rodot
 
 ## License
 
